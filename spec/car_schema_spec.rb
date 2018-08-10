@@ -84,6 +84,46 @@ RSpec.describe CarSchema do
           end
         end
       end
+
+      context 'when consumption is filled' do
+        before { attributes.merge! consumption: { city: city, highway: highway } }
+        let(:city) { 20 }
+        let(:highway) { 10 }
+
+        context 'when city is nil' do
+          let(:city) { nil }
+
+          it 'is success' do
+            expect(validation_result).to be_success
+          end
+        end
+
+        context 'when highway is nil' do
+          let(:highway) { nil }
+
+          it 'is success' do
+            expect(validation_result).to be_success
+          end
+        end
+
+        context 'when city and highway are NOT nil' do
+          context 'and highway is more than city' do
+            let(:highway) { 30 }
+
+            it 'is failure' do
+              expect(validation_result).to be_failure
+            end
+          end
+
+          context 'and city is more than highway' do
+            let(:city) { 30 }
+
+            it 'is success' do
+              expect(validation_result).to be_success
+            end
+          end
+        end
+      end
     end
   end
 end

@@ -46,7 +46,7 @@ shared_examples 'application schema' do
           expect(validation_result).to be_failure
         end
 
-        it 'does NOT contain errors' do
+        it 'contains correct errors' do
           expect(validation_result.errors).to include(tags: { 1 => ['must be a string'] })
         end
       end

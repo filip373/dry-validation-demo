@@ -23,6 +23,10 @@ RSpec.describe CarSchema do
         it 'is failure' do
           expect(validation_result).to be_failure
         end
+
+        it 'contains correct errors' do
+          expect(validation_result.errors).to include(color: ['must be given in each case'])
+        end
       end
 
       context 'when color is filled' do

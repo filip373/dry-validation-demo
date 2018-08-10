@@ -23,6 +23,10 @@ class CarSchema
 
     # custom predicate with optional key
     optional(:driver).filled :driver_name?
+
+    # nested validation
+    # form validation with params
+    # high-level rules
   end
 
   def self.get

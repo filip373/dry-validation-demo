@@ -1,0 +1,5 @@
+en:
+  errors:
+    rules:
+      color:
+        filled?: 'must be given in each case'

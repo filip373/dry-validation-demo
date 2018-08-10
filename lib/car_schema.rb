@@ -24,12 +24,13 @@ class CarSchema
     # custom predicate with optional key
     optional(:driver).filled :driver_name?
 
-    # nested validation and high level rule
+    # nested validation
     optional(:consumption).filled do
       schema do
         required(:city).maybe :int?
         required(:highway).maybe :int?
 
+        # high level rule
         rule(higher_city_consumption: [:city, :highway]) do |city, highway|
           city.none? | highway.none? | city.gt?(highway)
         end
